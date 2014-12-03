@@ -1,0 +1,31 @@
+<server>
+	<processors>
+		<command name="sendSettings">vn.edu.hust.student.dynamicpool.dal.processor.SendSettingsProcessor</command>
+		<command name="sendFish">vn.edu.hust.student.dynamicpool.dal.processor.SendFishProcessor</command>
+	</processors>
+	
+	<http>
+		<network>
+			<entry>
+				<path>/*</path>
+				<port>6969</port>
+			</entry>
+		</network>
+		<handlers>
+			
+		</handlers>
+	</http>
+	
+	<socket>
+		<network>
+			<entry>
+				<port>9696</port>
+			</entry>
+		</network>
+		<handlers>
+		  	<handler>sendSettings</handler>
+		  	<handler>sendFish</handler>
+		</handlers>
+	</socket>
+	
+</server>
