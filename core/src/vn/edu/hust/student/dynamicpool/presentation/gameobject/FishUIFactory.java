@@ -1,7 +1,7 @@
 package vn.edu.hust.student.dynamicpool.presentation.gameobject;
 
-import vn.edu.hust.student.dynamicpool.bll.model.FishType;
 import vn.edu.hust.student.dynamicpool.bll.model.Fish;
+import vn.edu.hust.student.dynamicpool.bll.model.FishType;
 import vn.edu.hust.student.dynamicpool.utils.AppConst;
 
 public class FishUIFactory {

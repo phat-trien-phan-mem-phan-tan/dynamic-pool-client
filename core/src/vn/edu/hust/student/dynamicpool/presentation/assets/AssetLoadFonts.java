@@ -2,7 +2,6 @@ package vn.edu.hust.student.dynamicpool.presentation.assets;
 
 import vn.edu.hust.student.dynamicpool.utils.AppConst;
 
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;

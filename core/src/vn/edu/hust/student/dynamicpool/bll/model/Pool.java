@@ -48,7 +48,7 @@ public class Pool {
 
 	public List<Segment> getSegments() {
 		if (segments == null)
-			segments = new ArrayList<>();
+			segments = new ArrayList<Segment>();
 		return segments;
 	}
 

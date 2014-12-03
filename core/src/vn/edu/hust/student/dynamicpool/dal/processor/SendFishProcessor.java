@@ -3,12 +3,10 @@ package vn.edu.hust.student.dynamicpool.dal.processor;
 import java.util.Map;
 
 import vn.edu.hust.student.dynamicpool.bll.model.Fish;
-import vn.edu.hust.student.dynamicpool.bll.model.FishPackage;
 import vn.edu.hust.student.dynamicpool.bll.model.JSONContentDTO;
 import vn.edu.hust.student.dynamicpool.dal.statics.Field;
 import vn.edu.hust.student.dynamicpool.events.EventDestination;
 import vn.edu.hust.student.dynamicpool.events.EventType;
-import vn.edu.hust.student.dynamicpool.exception.DALException;
 
 public class SendFishProcessor extends Processor {
 

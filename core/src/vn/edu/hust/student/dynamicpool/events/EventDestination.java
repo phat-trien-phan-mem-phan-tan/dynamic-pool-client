@@ -1,9 +1,12 @@
 package vn.edu.hust.student.dynamicpool.events;
 
 import java.lang.reflect.InvocationTargetException;
+
 import com.eposi.eventdriven.Event;
-import com.eposi.eventdriven.exceptions.*;
-import com.eposi.eventdriven.implementors.*;
+import com.eposi.eventdriven.exceptions.InvalidHandlerMethod;
+import com.eposi.eventdriven.exceptions.NoContextToExecute;
+import com.eposi.eventdriven.implementors.BaseEventDispatcher;
+import com.eposi.eventdriven.implementors.BaseEventListener;
 
 public class EventDestination {
 	private BaseEventDispatcher eventDispatcher = new BaseEventDispatcher();
@@ -29,40 +32,61 @@ public class EventDestination {
 		dispatchEvent(eventType, true, null, null);
 	}
 
-	private void dispatchEvent(EventType eventType, boolean isSuccess, Object targetObject, Exception error) {
+	private void dispatchEvent(EventType eventType, boolean isSuccess,
+			Object targetObject, Exception error) {
+		EventResult eventResult = new EventResult(isSuccess, targetObject,
+				error);
 		try {
-			EventResult eventResult = new EventResult(isSuccess, targetObject, error);
-			eventDispatcher.dispatchEvent(new Event(eventType.toString(), eventResult));
-		} catch (InvocationTargetException | IllegalAccessException
-				| NoSuchMethodException | InvalidHandlerMethod
-				| NoContextToExecute e) {
+			eventDispatcher.dispatchEvent(new Event(eventType.toString(),
+					eventResult));
+		} catch (InvocationTargetException e) {
 			System.err.println(EventDestination.class.toString() + " "
 					+ e.getMessage());
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			System.err.println(EventDestination.class.toString() + " "
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			System.err.println(EventDestination.class.toString() + " "
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (InvalidHandlerMethod e) {
+			System.err.println(EventDestination.class.toString() + " "
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (NoContextToExecute e) {
+			System.err.println(EventDestination.class.toString() + " "
+					+ e.getMessage());
+			e.printStackTrace();
 		}
 	}
-	
+
 	public void dispatchFailEvent(EventType eventType) {
 		dispatchEvent(eventType, false, null, null);
 	}
-	
-	public void dispatchSuccessEventWithObject(EventType eventType, Object targetObject) {
+
+	public void dispatchSuccessEventWithObject(EventType eventType,
+			Object targetObject) {
 		dispatchEvent(eventType, true, targetObject, null);
 	}
-	
-	public void dispatchFailEventWithExeption(EventType eventType, Exception error) {
+
+	public void dispatchFailEventWithExeption(EventType eventType,
+			Exception error) {
 		dispatchEvent(eventType, false, null, error);
 	}
-	
-	public void dispatchFailEventWithObject(EventType eventType, Exception error, Object targetObject) {
+
+	public void dispatchFailEventWithObject(EventType eventType,
+			Exception error, Object targetObject) {
 		dispatchEvent(eventType, false, targetObject, error);
 	}
 
 	public static boolean parseEventToBoolean(Event event) {
 		if (EventResult.class.isInstance(event.getTarget())) {
-			return ((EventResult)event.getTarget()).isSuccess();
+			return ((EventResult) event.getTarget()).isSuccess();
 		}
 		try {
-			boolean isSuccess = (boolean) event.getTarget();
+			boolean isSuccess = Boolean.parseBoolean(event.getTarget().toString());
 			return isSuccess;
 		} catch (Exception e) {
 			return false;
@@ -71,7 +95,7 @@ public class EventDestination {
 
 	public static Object parseEventToTargetObject(Event event) {
 		if (EventResult.class.isInstance(event.getTarget())) {
-			return ((EventResult)event.getTarget()).getTargetObject();
+			return ((EventResult) event.getTarget()).getTargetObject();
 		}
 		return event.getTarget();
 	}

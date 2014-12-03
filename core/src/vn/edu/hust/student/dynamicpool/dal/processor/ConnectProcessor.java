@@ -10,7 +10,7 @@ public class ConnectProcessor extends Processor {
 	public ProcessorExecutionResponse execute(ProcessorExecutionRequest request) {
 		Map<String, Object> params = request.getParameters();
 		if (params.containsKey(Field.SUCCESSFUL)) {
-			boolean success = (boolean) params.get(Field.SUCCESSFUL);
+			boolean success = Boolean.parseBoolean(params.get(Field.SUCCESSFUL).toString());
 		}
 		return null;
 	}
