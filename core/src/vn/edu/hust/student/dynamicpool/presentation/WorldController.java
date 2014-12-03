@@ -26,6 +26,7 @@ import vn.edu.hust.student.dynamicpool.presentation.screen.SplashScreen;
 import vn.edu.hust.student.dynamicpool.utils.AppConst;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
@@ -131,10 +132,9 @@ public class WorldController {
 	}
 
 	private void showFullScreen() {
-		// DisplayMode desktopDisplayMode =
-		// Gdx.graphics.getDesktopDisplayMode();
-		// Gdx.graphics.setDisplayMode(desktopDisplayMode.width,
-		// desktopDisplayMode.height, true);
+		DisplayMode desktopDisplayMode = Gdx.graphics.getDesktopDisplayMode();
+		Gdx.graphics.setDisplayMode(desktopDisplayMode.width,
+				desktopDisplayMode.height, true);
 	}
 
 	private void loadGameResources() {
@@ -167,12 +167,12 @@ public class WorldController {
 	}
 
 	private void sendDeviceInfoToServer() {
-		// DisplayMode desktopDisplayMode =
-		// Gdx.graphics.getDesktopDisplayMode();
-		// DeviceInfo deviceInfo = new DeviceInfo(desktopDisplayMode.width,
-		// desktopDisplayMode.height, this.size);
-		DeviceInfo deviceInfo = new DeviceInfo(AppConst.width, AppConst.height,
-				this.size);
+		 DisplayMode desktopDisplayMode =
+		 Gdx.graphics.getDesktopDisplayMode();
+		 DeviceInfo deviceInfo = new DeviceInfo(desktopDisplayMode.width,
+		 desktopDisplayMode.height, this.size);
+//		DeviceInfo deviceInfo = new DeviceInfo(AppConst.width, AppConst.height,
+//				this.size);
 		EventDestination.getInstance().addEventListener(
 				EventType.BLL_ADD_DEVICE,
 				new BaseEventListener(this, "onAddDeviceCallbackHander"));
