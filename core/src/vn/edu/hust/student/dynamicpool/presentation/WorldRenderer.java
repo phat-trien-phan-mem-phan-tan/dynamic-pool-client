@@ -31,7 +31,7 @@ public class WorldRenderer implements Disposable {
 		camera.setToOrtho(false, 800, 480);
 		camera.update();
 	}
-	
+
 	public void endRender() {
 		batch.end();
 	}
@@ -52,7 +52,12 @@ public class WorldRenderer implements Disposable {
 	public void resize(int width, int height) {
 		AppConst.width = width;
 		AppConst.height = height;
-		camera.setToOrtho(false, width, height);
+		if (AppConst.VIEWPORT_WIDTH > 0 && AppConst.VIEWPORT_HEIGHT > 0) {
+			camera.setToOrtho(false, AppConst.VIEWPORT_WIDTH,
+					AppConst.VIEWPORT_HEIGHT);
+		} else {
+			camera.setToOrtho(false, width, height);
+		}
 		camera.update();
 	}
 
@@ -69,4 +74,8 @@ public class WorldRenderer implements Disposable {
 		return camera;
 	}
 
+	public void updateViewPort() {
+		camera.setToOrtho(false, AppConst.VIEWPORT_WIDTH, AppConst.VIEWPORT_HEIGHT);
+		camera.update();
+	}
 }

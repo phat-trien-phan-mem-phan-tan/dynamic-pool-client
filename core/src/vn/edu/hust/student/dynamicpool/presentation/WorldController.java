@@ -180,7 +180,7 @@ public class WorldController {
 	}
 
 	public void onAddDeviceCallbackHander(Event event) {
-		logger.debug("on add device call back hander");
+		game.getWorldRenderer().updateViewPort();
 		showGameScreen();
 	}
 

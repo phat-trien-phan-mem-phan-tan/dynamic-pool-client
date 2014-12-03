@@ -13,14 +13,15 @@ import vn.edu.hust.student.dynamicpool.bll.model.FishState;
 import vn.edu.hust.student.dynamicpool.bll.model.Pool;
 import vn.edu.hust.student.dynamicpool.bll.model.PoolManager;
 import vn.edu.hust.student.dynamicpool.bll.model.Segment;
+import vn.edu.hust.student.dynamicpool.utils.AppConst;
 
 public class ClientPoolManager implements PoolManager {
 	private Logger logger = LoggerFactory.getLogger(ClientPoolManager.class);
 	private Pool clientPool = new Pool();
 	private List<Fish> fishes = new ArrayList<Fish>();
-	
+
 	public ClientPoolManager() {
-		
+
 	}
 
 	@Override
@@ -32,6 +33,7 @@ public class ClientPoolManager implements PoolManager {
 	}
 
 	List<Fish> removeFishes = new ArrayList<Fish>();
+
 	private void detectCollision() {
 		for (Fish fish : fishes) {
 			Boundary poolBoundary = clientPool.getBoundary();
@@ -46,10 +48,11 @@ public class ClientPoolManager implements PoolManager {
 				}
 				break;
 			case OUTSIDE:
-//				if (!fish.getBoundary().isOutside(clientPool.getBoundary())) {
-//					fish.setFishState(FishState.RETURN);
-//				}
-//				break;
+				// if (!fish.getBoundary().isOutside(clientPool.getBoundary()))
+				// {
+				// fish.setFishState(FishState.RETURN);
+				// }
+				// break;
 			case RETURN:
 			default:
 				if (fishBoundary.isInside(poolBoundary)) {
@@ -129,11 +132,14 @@ public class ClientPoolManager implements PoolManager {
 	}
 
 	public void updateSetting(Pool clientPoolSetting) {
-		clientPool.getDeviceInfo().setClientName(clientPoolSetting.getDeviceInfo()
-				.getClientName());
-		clientPool.getBoundary().setWidth(clientPoolSetting.getBoundary().getWidth());
-		clientPool.getBoundary().setHeight(
-				clientPoolSetting.getBoundary().getHeight());
+		clientPool.getDeviceInfo().setClientName(
+				clientPoolSetting.getDeviceInfo().getClientName());
+		float width = clientPoolSetting.getBoundary().getWidth();
+		float height = clientPoolSetting.getBoundary().getHeight();
+		clientPool.getBoundary().setWidth(width);
+		clientPool.getBoundary().setHeight(height);
+		AppConst.VIEWPORT_WIDTH = width;
+		AppConst.VIEWPORT_HEIGHT = height;
 		updateSegments(clientPoolSetting.getSegments());
 		clientPool.setScale(clientPoolSetting.getScale());
 	}
@@ -143,8 +149,7 @@ public class ClientPoolManager implements PoolManager {
 		segments.clear();
 		for (Segment clientSegment : clientSegments) {
 			Segment segment = new Segment(clientSegment.getSegmentDirection(),
-					clientSegment.getBeginPoint(), clientSegment
-							.getEndPoint());
+					clientSegment.getBeginPoint(), clientSegment.getEndPoint());
 			segments.add(segment);
 		}
 	}
@@ -159,6 +164,6 @@ public class ClientPoolManager implements PoolManager {
 	}
 
 	public void removeFish(String fishId) {
-		
+
 	}
 }

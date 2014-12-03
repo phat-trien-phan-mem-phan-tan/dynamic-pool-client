@@ -15,8 +15,6 @@ import vn.edu.hust.student.dynamicpool.bll.model.client.ClientPoolManager;
 import vn.edu.hust.student.dynamicpool.dal.ClientDataAccessLayerImpl;
 import vn.edu.hust.student.dynamicpool.events.EventDestination;
 import vn.edu.hust.student.dynamicpool.events.EventType;
-import vn.edu.hust.student.dynamicpool.presentation.screen.ErrorInputProcessor;
-import vn.edu.hust.student.dynamicpool.presentation.screen.ErrorScreen;
 
 import com.eposi.eventdriven.Event;
 import com.eposi.eventdriven.implementors.BaseEventListener;
@@ -27,7 +25,6 @@ public class ClientBusinessLogicLayerImpl {
 	private ClientPoolManager clientPoolManager = new ClientPoolManager();
 	private Logger logger = LoggerFactory
 			.getLogger(ClientBusinessLogicLayerImpl.class);
-	private ErrorScreen errorScreen = null;
 
 	public ClientBusinessLogicLayerImpl() {
 		this.dataAccessLayer = new ClientDataAccessLayerImpl();
