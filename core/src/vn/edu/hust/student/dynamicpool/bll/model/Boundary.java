@@ -110,4 +110,22 @@ public class Boundary {
 	public boolean equals(Boundary boundary) {
 		return this.width == boundary.width && this.height == boundary.height && this.location.equals(boundary.getLocation());
 	}
+
+	public void increaseLocation(float dx, float dy) {
+		this.location.setLocation(location.getX()+dx, location.getY()+dy);
+	}
+
+	public boolean isValidPoolPosition(Boundary containerBoundary) {
+		double doubleDistanceX = Math.abs(containerBoundary.getMinX() * 2
+				+ containerBoundary.getWidth() - this.getMinX() * 2
+				- this.getWidth());
+		float minDistanceX = containerBoundary.getWidth() + this.getWidth();
+		float doubleDistanceY = Math.abs(containerBoundary.getMinY() * 2
+				+ containerBoundary.getHeight() - this.getMinY() * 2
+				- this.getHeight());
+		float minDoubleDistanceY = containerBoundary.getHeight()
+				+ this.getHeight();
+		return doubleDistanceX >= minDistanceX
+				|| doubleDistanceY >= minDoubleDistanceY;
+	}
 }
