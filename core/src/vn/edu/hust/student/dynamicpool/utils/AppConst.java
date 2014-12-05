@@ -1,8 +1,6 @@
 package vn.edu.hust.student.dynamicpool.utils;
 
 public class AppConst {
-    public static float VIEWPORT_WIDTH = 0f;
-    public static float VIEWPORT_HEIGHT = 0f;
     public static final String RIGHT_FISH_1_TEXTURE = "fish1.png";
 	public static final String LEFT_FISH_1_TEXTURE = "fish1_2.png";
 	public static final String RIGHT_FISH_2_TEXTURE = "fish2.png";
@@ -67,7 +65,6 @@ public class AppConst {
 	public static final int FISH_TEN_HEIGHT = 25;
 	public static int width = 800;
 	public static int height = 480;
-	
 	
 	public static float timePass = 0.5f;
 	

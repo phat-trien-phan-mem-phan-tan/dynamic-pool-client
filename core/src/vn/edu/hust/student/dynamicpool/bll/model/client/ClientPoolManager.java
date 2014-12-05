@@ -138,8 +138,8 @@ public class ClientPoolManager implements PoolManager {
 		float height = clientPoolSetting.getBoundary().getHeight();
 		clientPool.getBoundary().setWidth(width);
 		clientPool.getBoundary().setHeight(height);
-		AppConst.VIEWPORT_WIDTH = width;
-		AppConst.VIEWPORT_HEIGHT = height;
+		AppConst.width = (int) width;
+		AppConst.height = (int) height;
 		updateSegments(clientPoolSetting.getSegments());
 		clientPool.setScale(clientPoolSetting.getScale());
 	}

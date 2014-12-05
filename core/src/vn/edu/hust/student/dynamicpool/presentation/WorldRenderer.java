@@ -50,14 +50,11 @@ public class WorldRenderer implements Disposable {
 	}
 
 	public void resize(int width, int height) {
-		AppConst.width = width;
-		AppConst.height = height;
-		if (AppConst.VIEWPORT_WIDTH > 0 && AppConst.VIEWPORT_HEIGHT > 0) {
-			camera.setToOrtho(false, AppConst.VIEWPORT_WIDTH,
-					AppConst.VIEWPORT_HEIGHT);
-		} else {
-			camera.setToOrtho(false, width, height);
-		}
+//		AppConst.width = width;
+//		AppConst.height = height;
+		camera.setToOrtho(false, AppConst.width, AppConst.height);
+		System.err.println("resize camera: width: " + AppConst.width
+				+ " height: " + AppConst.height);
 		camera.update();
 	}
 
@@ -75,7 +72,9 @@ public class WorldRenderer implements Disposable {
 	}
 
 	public void updateViewPort() {
-		camera.setToOrtho(false, AppConst.VIEWPORT_WIDTH, AppConst.VIEWPORT_HEIGHT);
+		camera.setToOrtho(false, AppConst.width, AppConst.height);
+		System.err.println("change camera: width: " + AppConst.width
+				+ " height: " + AppConst.height);
 		camera.update();
 	}
 }
